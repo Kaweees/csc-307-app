@@ -7,7 +7,11 @@
 		"start": "astro dev",
 		"build": "astro check && astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"lint": "prettier \".\" --check && eslint --report-unused-disable-directives --max-warnings 0",
+		"format": "prettier \".\" --write --ignore-path .gitignore",
+		"taze": "npx taze major -I",
+		"taze:minor": "npx taze minor -w"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.7.0",
@@ -36,6 +40,8 @@
 		"typescript": "^5.4.5"
 	},
 	"devDependencies": {
-		"@trivago/prettier-plugin-sort-imports": "^4.3.0"
+		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
+		"@typescript-eslint/parser": "^7.11.0",
+		"taze": "^0.13.8"
 	}
 }
