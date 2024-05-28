@@ -1,0 +1,43 @@
+---
+import { Icons } from "@components/icons"
+import { siteConfig } from "@config"
+import { cn } from "@lib/utils"
+import { navLinks } from "@config";
+
+export interface Props {
+  pathName: string;
+}
+
+const { pathName } = Astro.props;
+---
+
+<div class="mr-4 hidden md:flex">
+  <a href="/" class="mr-6 flex items-center space-x-2">
+    <Icons.logo className="h-6 w-6" />
+    <span class="hidden font-bold sm:inline-block">
+      {siteConfig.name}
+    </span>
+  </a>
+  <nav class="flex items-center gap-4 text-sm lg:gap-6">
+    {
+      navLinks.length > 0 && (
+        <>
+        {navLinks.map(({ href, title }) => (
+            <a
+              href={`/${href}`}
+              class={cn("transition-colors hover:text-foreground/80", pathName?.startsWith(href) ? "text-foreground" : "text-foreground/60")}
+            >{title}</a>
+          ))}
+        </>
+      )
+    }
+    <a
+      href={siteConfig.links.github}
+      class={cn(
+        "hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
+      )}
+    >
+      GitHub
+    </a>
+  </nav>
+</div>

@@ -5,34 +5,16 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 import { ModeToggle } from '@components/ModeToggle';
+import Header from '@components/Header.astro';
 
 ---
 
-<script is:inline>
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-
-	if (typeof localStorage !== 'undefined') {
-		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-	}
-</script>
-
 <html lang="en">
 	<body>
+    <Header/>
     <Layout title="Welcome to Astro.">
       <main>
         <h1>Astro</h1>
-      <ModeToggle client:load />
         <!-- <h1>Welcome to <span class="text-gradient">Astro</span></h1>
         <p class="instructions">
           To get started, open the directory <code>src/pages</code> in your project.<br />
