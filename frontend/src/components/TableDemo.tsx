@@ -20,11 +20,12 @@ export default function TableDemo(props: TableDemoProps): JSX.Element {
 	return (
 		<>
 			<Table>
-				<TableCaption>A list of your recent people.</TableCaption>
+				<TableCaption>A list of your employees.</TableCaption>
 				<TableHeader>
 					<TableRow>
 						<TableHead className="w-[100px]">Name</TableHead>
-						<TableHead className="text-right">Job</TableHead>
+						<TableHead className="text-right w-[100px]">Job</TableHead>
+						<TableHead className="text-right w-[100px]"></TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>

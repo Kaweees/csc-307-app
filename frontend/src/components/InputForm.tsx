@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@components/ui/button';
 import {
 	Form,
@@ -11,7 +9,6 @@ import {
 	FormMessage,
 } from '@components/ui/form';
 import { Input } from '@components/ui/input';
-import { toast } from '@components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,17 +23,15 @@ const FormSchema = z.object({
 	}),
 });
 
-export function InputForm() {
+interface InputFormProps {
+	addEmployee: (employee: { name: string; job: string }) => void;
+}
+
+export default function InputForm(props: InputFormProps): JSX.Element {
 	const [person, setPerson] = useState({
 		name: '',
 		job: '',
 	});
-
-	function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-		const { name, value } = event.target;
-		if (name === 'job') setPerson({ name: person['name'], job: value });
-		else setPerson({ name: value, job: person['job'] });
-	}
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -47,23 +42,9 @@ export function InputForm() {
 	});
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log('data', data);
-		toast({
-			title: 'You submitted the following values:',
-			description: (
-				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-					<code className="text-white">{JSON.stringify(data, null, 2)}</code>
-				</pre>
-			),
-		});
+		props.addEmployee(data);
 	}
 
-	// const handleChange = (e) => {
-	//   setFormData({
-	//     ...formData,
-	//     [e.target.name]: e.target.value,
-	//   });
-	// };
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault(); // Prevent the default form submission behavior
 		// Handle form submission logic here, e.g., send form data to an API
@@ -72,7 +53,7 @@ export function InputForm() {
 
 	return (
 		<Form {...form}>
-			<form method="POST" onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
 				<FormField
 					control={form.control}
 					name="name"

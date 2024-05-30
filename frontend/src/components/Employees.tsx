@@ -1,10 +1,14 @@
-import { InputForm } from '@components/InputForm';
+import InputForm from '@components/InputForm';
 import TableDemo from '@components/TableDemo';
+import { Toaster } from '@components/ui/toaster';
+import { useToast } from '@components/ui/use-toast';
 import { useState } from 'react';
 
 interface EmployeesProps {}
 
 export default function Employees(props: EmployeesProps): JSX.Element {
+	const { toast } = useToast();
+
 	const [employees, setEmployees] = useState([
 		{
 			name: 'Charlie',
@@ -29,12 +33,33 @@ export default function Employees(props: EmployeesProps): JSX.Element {
 			return i !== index;
 		});
 		setEmployees(updated);
+		toast({
+			title: 'Removed employee',
+			description: (
+				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+					<code className="text-white">{JSON.stringify(employees[index], null, 2)}</code>
+				</pre>
+			),
+		});
+	}
+
+	function addEmployee(employee: { name: string; job: string }): void {
+		setEmployees([...employees, employee]);
+		toast({
+			title: 'Added employee',
+			description: (
+				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+					<code className="text-white">{JSON.stringify(employee, null, 2)}</code>
+				</pre>
+			),
+		});
 	}
 
 	return (
 		<>
+			<Toaster />
 			<TableDemo employees={employees} removeEmployee={removeEmployee} />
-			<InputForm />
+			<InputForm addEmployee={addEmployee} />
 		</>
 	);
 }
