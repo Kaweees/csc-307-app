@@ -1,3 +1,15 @@
+### Prerequisites
+
+Before attempting to build this project, make sure you have [Docker](https://docs.docker.com/engine/install/), [Node.js](https://nodejs.org/en/download), and [pNpM](https://pnpm.io/) installed on your machine.
+
+Additionally, make sure [taze](https://github.com/antfu/taze) and [turbo](https://turbo.build/repo/docs/getting-started/existing-monorepo) and are installed globally:
+
+```sh
+pnpm install taze --global
+pnpm install turbo --global
+```
+
+
 ```log
 ./
 ├── Dockerfile
