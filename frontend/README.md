@@ -1,3 +1,39 @@
+# Frontend
+
+A simple frontend for editing a todo list.
+
+Run it in production mode:
+
+```bash
+pnpm start
+```
+
+Run it in development mode (with live reload on the backend):
+
+```bash
+pnpm run start:dev
+```
+
+```bash
+pnpm dlx shadcn-ui@latest add <component>
+```
+
+```
+pnpm add <dependency-name> --save
+pnpm add <dependency-name> --save-dev
+
+
+
+```
+
+```bash
+pnpm dlx shadcn-ui@latest add <component>
+```
+
+
+
+To see the frontend, open a browser and navigate to http://localhost:1234.
+
 # Astro Starter Kit: Basics
 
 ```sh
