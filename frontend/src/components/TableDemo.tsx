@@ -9,7 +9,6 @@ import {
 	TableHeader,
 	TableRow,
 } from '@components/ui/table';
-import { useState } from 'react';
 
 interface TableDemoProps {
 	employees: { name: string; job: string }[];

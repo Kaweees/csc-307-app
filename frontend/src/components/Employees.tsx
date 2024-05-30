@@ -4,9 +4,7 @@ import { Toaster } from '@components/ui/toaster';
 import { useToast } from '@components/ui/use-toast';
 import { useState } from 'react';
 
-interface EmployeesProps {}
-
-export default function Employees(props: EmployeesProps): JSX.Element {
+export default function Employees(): JSX.Element {
 	const { toast } = useToast();
 
 	const [employees, setEmployees] = useState([
@@ -29,7 +27,7 @@ export default function Employees(props: EmployeesProps): JSX.Element {
 	]);
 
 	function removeEmployee(index: number): void {
-		const updated = employees.filter((employee, i) => {
+		const updated = employees.filter((_employee, i) => {
 			return i !== index;
 		});
 		setEmployees(updated);

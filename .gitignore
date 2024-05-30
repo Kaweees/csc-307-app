@@ -55,6 +55,7 @@ __fixtures__/custom-modules-dir/patches/
 # build output
 dist/
 .output/
+build/
 
 # environment variables
 .env

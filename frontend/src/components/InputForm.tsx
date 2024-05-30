@@ -28,7 +28,7 @@ interface InputFormProps {
 }
 
 export default function InputForm(props: InputFormProps): JSX.Element {
-	const [person, setPerson] = useState({
+	const [person] = useState({
 		name: '',
 		job: '',
 	});
@@ -44,12 +44,6 @@ export default function InputForm(props: InputFormProps): JSX.Element {
 	function onSubmit(data: z.infer<typeof FormSchema>) {
 		props.addEmployee(data);
 	}
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault(); // Prevent the default form submission behavior
-		// Handle form submission logic here, e.g., send form data to an API
-		console.log('Form submitted:', person);
-	};
 
 	return (
 		<Form {...form}>
