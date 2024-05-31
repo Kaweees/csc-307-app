@@ -1,8 +1,4 @@
-export interface User {
-	id: string;
-	name: string;
-	job: string;
-}
+import { User } from 'api';
 
 export const users: { users_list: User[] } = {
 	users_list: [
