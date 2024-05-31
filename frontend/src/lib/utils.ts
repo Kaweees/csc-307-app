@@ -31,26 +31,3 @@ export function getBaseRoute(pathname: string) {
 	const pathSegments = pathname.split('/').filter((segment: string) => segment !== '');
 	return pathSegments.length > 0 ? pathSegments[0] : '';
 }
-
-export function fetchUsers(): Promise<Response> {
-	const promise = fetch('http://localhost:8000/users');
-	return promise;
-}
-
-export function postUser(person) {
-	const promise = fetch('Http://localhost:8000/users', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(person),
-	});
-	return promise;
-}
-
-export function deleteUser(id: string): Promise<Response> {
-	const promise = fetch(`http://localhost:8000/users/${id}`, {
-		method: 'DELETE',
-	});
-	return promise;
-}
