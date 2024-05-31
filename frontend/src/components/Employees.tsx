@@ -2,7 +2,7 @@ import InputForm from '@components/InputForm';
 import TableDemo from '@components/TableDemo';
 import { Toaster } from '@components/ui/toaster';
 import { useToast } from '@components/ui/use-toast';
-import { deleteUser, fetchUsers, postUser } from '@lib/utils';
+import { deleteUser, fetchUsers, postUser } from 'api';
 import { useEffect, useState } from 'react';
 
 export default function Employees(): JSX.Element {

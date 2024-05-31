@@ -1,7 +1,6 @@
 {
 	"name": "api",
 	"version": "1.0.0",
-	"description": "A code library for validation, reusable in the frontend and backend.",
 	"main": "build/index.js",
 	"scripts": {
 		"clean": "rm -rf build tsconfig.tsbuildinfo",
