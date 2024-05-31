@@ -10,6 +10,7 @@ import {
 } from '@components/ui/form';
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { type User } from 'api';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -24,7 +25,7 @@ const FormSchema = z.object({
 });
 
 interface InputFormProps {
-	addEmployee: (employee: { name: string; job: string }) => void;
+	addEmployee: (employee: User) => void;
 }
 
 export default function InputForm(props: InputFormProps): JSX.Element {
@@ -42,7 +43,12 @@ export default function InputForm(props: InputFormProps): JSX.Element {
 	});
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		props.addEmployee(data);
+		const employee: User = {
+			id: '', // Add the missing 'id' property
+			name: data.name,
+			job: data.job,
+		};
+		props.addEmployee(employee);
 	}
 
 	return (

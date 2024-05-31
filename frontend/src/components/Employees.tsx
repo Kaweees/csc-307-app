@@ -2,15 +2,15 @@ import InputForm from '@components/InputForm';
 import TableDemo from '@components/TableDemo';
 import { Toaster } from '@components/ui/toaster';
 import { useToast } from '@components/ui/use-toast';
-import { deleteUser, fetchUsers, postUser } from 'api';
+import { type User, type UsersList, deleteUser, fetchUsers, postUser } from 'api';
 import { useEffect, useState } from 'react';
 
 export default function Employees(): JSX.Element {
 	const { toast } = useToast();
 
-	const [employees, setEmployees] = useState([]);
+	const [employees, setEmployees] = useState<User[]>([]);
 
-	function addEmployee(employee: { name: string; job: string; id: string }): void {
+	function addEmployee(employee: User): void {
 		postUser(employee)
 			.then(() => setEmployees([...employees, employee]))
 			.catch((error) => {
@@ -45,8 +45,7 @@ export default function Employees(): JSX.Element {
 
 	useEffect(() => {
 		fetchUsers()
-			.then((res) => res.json())
-			.then((json) => setEmployees(json['users_list']))
+			.then((res) => setEmployees(res['users_list']))
 			.catch((error) => {
 				console.log(error);
 			});
