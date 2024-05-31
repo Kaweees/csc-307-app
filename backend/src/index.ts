@@ -1,10 +1,11 @@
+// import { IAddTodoPayload, IGetTodosResponse, ITodoItem, validateTodo } from 'validation';
+import { User } from 'api';
 import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 
 import {
-	User,
 	addUser,
 	deleteUserById,
 	findUserById,
