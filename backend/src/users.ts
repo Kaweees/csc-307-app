@@ -47,9 +47,9 @@ export const findUsersByNameAndJob = (name: string, job: string) => {
 };
 
 export const deleteUserById = (id: string): boolean => {
-	const index = users['users_list'].findIndex((user) => user['id'] === id);
-	if (index !== -1) {
-		users['users_list'].splice(index, 1);
+	const user = findUserById(id);
+	if (user) {
+		users['users_list'] = users['users_list'].filter((user) => user['id'] !== id);
 		return true; // User deleted successfully
 	}
 	return false; // User not found

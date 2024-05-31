@@ -14,9 +14,6 @@ importers:
       express:
         specifier: ^4.19.2
         version: 4.19.2
-      express-backend:
-        specifier: ^2.0.0
-        version: 2.0.0
     devDependencies:
       '@types/body-parser':
         specifier: ^1.19.2
@@ -27,6 +24,9 @@ importers:
 
   backend:
     dependencies:
+      api:
+        specifier: workspace:*
+        version: link:../packages/api
       body-parser:
         specifier: ^1.20.0
         version: 1.20.2
@@ -103,6 +103,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      api:
+        specifier: workspace:*
+        version: link:../packages/api
       astro:
         specifier: ^4.9.2
         version: 4.9.2(@types/node@20.12.13)(typescript@5.4.5)
@@ -155,6 +158,12 @@ importers:
       taze:
         specifier: ^0.13.8
         version: 0.13.8
+
+  packages/api:
+    devDependencies:
+      typescript:
+        specifier: ^4.7.3
+        version: 4.9.5
 
 packages:
 
@@ -2029,10 +2038,6 @@ packages:
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
-
-  express-backend@2.0.0:
-    resolution: {integrity: sha512-bpy9DbFVc6XL0LGR8bct6InyZD4F/5grYVVFb+obXuES15/4rTXjjJAeru6Tq3kmgLCQsbXJxwSrUSUHyqxT8Q==}
-    deprecated: Package no longer supported. Contact support@npmjs.com for more info.
 
   express@4.19.2:
     resolution: {integrity: sha512-5T6nhjsT+EOMzuck8JjBHARTHfMht0POzlA60WV2pMD3gyXw2LZnZ+ueGdNxG+0calOJcWKbpFcuzLZ91YWq9Q==}
@@ -5735,8 +5740,6 @@ snapshots:
       onetime: 6.0.0
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
-
-  express-backend@2.0.0: {}
 
   express@4.19.2:
     dependencies:

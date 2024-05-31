@@ -42,7 +42,8 @@
 		"tailwindcss": "^3.4.3",
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.4.5",
-		"zod": "^3.23.8"
+		"zod": "^3.23.8",
+		"api": "workspace:*"
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.3.0",

@@ -54,6 +54,7 @@ app.get('/users/search', (req: Request, res: Response) => {
 });
 
 app.post('/users', (req: Request, res: Response) => {
+	console.log('POST ', req.body);
 	const userToAdd = req.body as User;
 	addUser(userToAdd);
 	res.send();
