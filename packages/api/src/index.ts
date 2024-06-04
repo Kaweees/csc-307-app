@@ -11,14 +11,14 @@ export interface UsersList {
 	users_list: User[];
 }
 
-export function fetchUsers(): Promise<UsersList> {
+export function fetchUsers(): Promise<Response> {
 	const promise = fetch('http://localhost:8000/users', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Origin': '*',
 		},
-	}).then((res) => res.json() as Promise<UsersList>);
+	});
 	return promise;
 }
 

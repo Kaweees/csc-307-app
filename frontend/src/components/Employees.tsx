@@ -12,7 +12,8 @@ export default function Employees(): JSX.Element {
 
 	function addEmployee(employee: User): void {
 		postUser(employee)
-			.then(() => setEmployees([...employees, employee]))
+			.then((res) => res.json() as Promise<User>)
+			.then((json) => setEmployees([...employees, json]))
 			.catch((error) => {
 				console.log(error);
 			});
@@ -27,25 +28,30 @@ export default function Employees(): JSX.Element {
 	}
 
 	function removeEmployee(index: number): void {
-		const updated = employees.filter((_employee, i) => {
-			return i !== index;
-		});
-		setEmployees(updated);
-		console.log(employees[index]);
-		deleteUser(employees[index].id);
-		toast({
-			title: 'Removed employee',
-			description: (
-				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-					<code className="text-white">{JSON.stringify(employees[index], null, 2)}</code>
-				</pre>
-			),
-		});
+		deleteUser(employees[index].id)
+			.then((res) => {
+				if (res.status === 204) {
+					const newEmployees = employees.filter((_employees, i) => i !== index);
+					setEmployees(newEmployees);
+					toast({
+						title: 'Removed employee',
+						description: (
+							<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+								<code className="text-white">{JSON.stringify(employees[index], null, 2)}</code>
+							</pre>
+						),
+					});
+				} else {
+					console.log('Delete failed');
+				}
+			})
+			.catch((error) => console.log(error));
 	}
 
 	useEffect(() => {
 		fetchUsers()
-			.then((res) => setEmployees(res['users_list']))
+			.then((res) => res.json() as Promise<UsersList>)
+			.then((json) => setEmployees(json['users_list']))
 			.catch((error) => {
 				console.log(error);
 			});
