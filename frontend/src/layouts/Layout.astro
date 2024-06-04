@@ -27,9 +27,7 @@ const isProd = import.meta.env.PROD;
 	</head>
 	<body>
     <Header activeNav={baseRoute} />
-    <div class="container">
-      <slot />
-    </div>
+    <slot />
     {!isProd && <TailwindIndicator />}
   </body>
   <Footer/>

@@ -1,11 +1,22 @@
-import InputForm from '@components/InputForm';
+import AddEmployeeForm from '@components/AddEmployeeForm';
 import TableDemo from '@components/TableDemo';
+import { Button } from '@components/ui/button';
+import {
+	Drawer,
+	DrawerContent,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from '@components/ui/drawer';
+import { ScrollArea } from '@components/ui/scroll-area';
 import { Toaster } from '@components/ui/toaster';
 import { useToast } from '@components/ui/use-toast';
 import { type User, type UsersList, deleteUser, fetchUsers, postUser } from 'api';
 import { useEffect, useState } from 'react';
 
 export default function Employees(): JSX.Element {
+	const [showSheet, setShowSheet] = useState(false);
+
 	const { toast } = useToast();
 
 	const [employees, setEmployees] = useState<User[]>([]);
@@ -59,9 +70,32 @@ export default function Employees(): JSX.Element {
 
 	return (
 		<>
+			<div className="flex h-full flex-1 flex-col space-y-8 p-8">
+				<div className="flex items-center justify-between space-y-2">
+					<div>
+						<h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
+						<p className="text-muted-foreground">Here&apos;s a list of your employees!</p>
+					</div>
+					<div className="flex items-center space-x-2">
+						<Drawer open={showSheet} onOpenChange={setShowSheet}>
+							<DrawerTrigger asChild>
+								<Button>Add person</Button>
+							</DrawerTrigger>
+							<DrawerContent>
+								<DrawerHeader>
+									<DrawerTitle>Add person</DrawerTitle>
+								</DrawerHeader>
+
+								<ScrollArea className="overflow-y-auto">
+									<AddEmployeeForm addEmployee={addEmployee} />
+								</ScrollArea>
+							</DrawerContent>
+						</Drawer>
+					</div>
+				</div>
+				<TableDemo employees={employees} removeEmployee={removeEmployee} />
+			</div>
 			<Toaster />
-			<TableDemo employees={employees} removeEmployee={removeEmployee} />
-			<InputForm addEmployee={addEmployee} />
 		</>
 	);
 }
