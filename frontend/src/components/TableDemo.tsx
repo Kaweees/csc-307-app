@@ -10,6 +10,7 @@ import {
 	TableRow,
 } from '@components/ui/table';
 import { type User } from 'api';
+import { Trash2 } from 'lucide-react';
 
 interface TableDemoProps {
 	employees: User[];
@@ -30,16 +31,35 @@ export default function TableDemo(props: TableDemoProps): JSX.Element {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{props.employees.map((invoice, index) => (
-						<TableRow key={invoice.id}>
-							<TableCell className="font-medium">{invoice.name}</TableCell>
-							<TableCell className="text-right">{invoice.job}</TableCell>
-							<TableCell className="text-right">{invoice.id}</TableCell>
-							<TableCell className="text-right">
-								<Button onClick={() => props.removeEmployee(index)}>Remove</Button>
-							</TableCell>
-						</TableRow>
-					))}
+					{props.employees.length > 0 ? (
+						props.employees.map(
+							(employee, index) =>
+								(
+									<TableRow key={employee.id}>
+										<TableCell className="font-medium text-left py-5">{employee.name}</TableCell>
+										<TableCell className="text-right py-5">{employee.job}</TableCell>
+										<TableCell className="text-right py-5">{employee.id}</TableCell>
+										<TableCell className="text-right">
+											<Button
+												variant="destructive"
+												size="icon"
+												onClick={() => props.removeEmployee(index)}
+											>
+												<Trash2 />
+											</Button>
+										</TableCell>
+									</TableRow>
+								) as JSX.Element,
+						)
+					) : (
+						<>
+							<TableRow>
+								<TableCell colSpan={4} className="text-center py-5">
+									No employees found
+								</TableCell>
+							</TableRow>
+						</>
+					)}
 				</TableBody>
 				<TableFooter>
 					<TableRow>

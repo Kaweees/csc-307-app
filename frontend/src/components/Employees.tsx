@@ -83,10 +83,9 @@ export default function Employees(): JSX.Element {
 							</DrawerTrigger>
 							<DrawerContent>
 								<DrawerHeader>
-									<DrawerTitle>Add person</DrawerTitle>
+									<DrawerTitle className="px-4">Add person</DrawerTitle>
 								</DrawerHeader>
-
-								<ScrollArea className="overflow-y-auto">
+								<ScrollArea className="overflow-y-auto ">
 									<AddEmployeeForm addEmployee={addEmployee} />
 								</ScrollArea>
 							</DrawerContent>
