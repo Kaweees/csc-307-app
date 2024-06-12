@@ -34,6 +34,22 @@ pnpm install turbo --global
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 └── tsconfig.json
+## Project layout
+
+
+./
+│   package.json        Root project metadata.
+│    pnpm-lock.yaml      Dependencies lockfile.
+│   pnpm-workspace.yaml Pnpm workspace configuration.
+│
+├───backend                The backend example project.
+│   ├───src                    Source code.
+│   └───test                Test files.
+├───frontend            The frontend example project.
+│   └───src                    Source code.
+└───packages
+    └───validation        A sub-package for validation that
+        └───src            is shared between frontend and backend.
 ```
 
 ```sh
